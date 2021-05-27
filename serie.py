@@ -7,6 +7,7 @@ class Serie(Deliverable):
     __seasons = 3
     __genre = ""
     __creator = ""
+    __borrowed = False
 
     # Constructor
     def __init__(self, title, seasons, genre, creator):
@@ -53,5 +54,14 @@ class Serie(Deliverable):
     def __str__(self):
         return f"Title: {self.title}, Seasons: {self.seasons}, Genre: {self.genre}, Creator: {self.creator}"
 
-    def comparable(self):
-        return self.__seasons
+    def is_delivered(self):
+        return self.__borrowed
+
+    def deliver(self):
+        self.__borrowed = True
+
+    def take_back(self):
+        self.__borrowed = False
+
+    def compare_to(self, obj):
+        return self.__seasons > obj.__seasons
